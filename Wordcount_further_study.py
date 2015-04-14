@@ -1,5 +1,7 @@
 from collections import Counter
 
+import operator
+
 with open("test.txt") as poem:
     
     poem_dict = {}
@@ -14,6 +16,12 @@ with open("test.txt") as poem:
     for word in poem_comb:
 
         poem_dict[word] = counter[word]
+    
+    # poem_dict_alpha = sorted(poem_dict)
 
-    for word in poem_dict:
+    sorted_dict = sorted(poem_dict.items(),key=operator.itemgetter(1), reverse=True)
+
+    print sorted_dict
+
+    for word,count in sorted_dict: 
         print "%s %d" % (word, poem_dict[word])
